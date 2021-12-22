@@ -1,7 +1,7 @@
 export const locService = {
     getLocs,
-    setNewLoc
-
+    setNewLoc,
+    deleteLoc
 }
 
 
@@ -29,4 +29,9 @@ function setNewLoc(lat, lng) {
         updatedAt: time
     })
     console.log(locs)
+}
+
+function deleteLoc(lat,lng){
+   const locIdx =  locs.findIndex(loc => lat === loc.lat && lng === loc.lng);
+   locs.splice(locIdx,1);
 }
