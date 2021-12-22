@@ -1,3 +1,4 @@
+import { weatherServices } from './weather.service.js'
 export const locService = {
     getLocs,
     setNewLoc
@@ -19,14 +20,25 @@ function getLocs() {
 }
 
 function setNewLoc(lat, lng) {
-    let time = new Date();
-    locs.push({
-        name: prompt('Enter name for location'),
-        lat: lat,
-        lng: lng,
-        weather: 24,
-        createdAt: time,
-        updatedAt: time
-    })
-    console.log(locs)
+    getWeather(lat, lng)
+        .then(degree => Math.round(degree - 273.15))
+        .then(degree => {
+            let time = Date.now();
+            locs.push({
+                name: prompt('Enter name for location'),
+                lat: lat,
+                lng: lng,
+                weather: degree,
+                createdAt: time,
+                updatedAt: time
+            })
+        }),
+
+        console.log(locs)
+}
+
+function getWeather(lat, lng) {
+    console.log(weatherServices.askWeather(lat, lng))
+    return weatherServices.askWeather(lat, lng)
+        .then((temp) => temp.main.temp)
 }
