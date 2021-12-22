@@ -32,8 +32,18 @@ function onGetLocs() {
     locService.getLocs()
         .then(locs => {
             console.log('Locations:', locs)
+            const strHtmls = locs.map(loc=>{
+                return <tr>
+                    <button >Go</button>
+                <button>delete</button>
+
+
+                </tr>
+                
+            })
             document.querySelector('.locs').innerText = JSON.stringify(locs)
         })
+
 }
 
 function onGetUserPos() {
