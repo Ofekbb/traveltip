@@ -33,7 +33,13 @@
                     </table>
                 </div>
             </div>
-            <div id="map" style="width: 50%; height: 400px;"></div>
+            <div class="map-container">
+                <form onsubmit="onSearchLocation(event)">
+                    <input type="text" placeholder="search location">
+                    <button>search</button>
+                </form>
+                <div id="map" style="width: 100%; height: 400px;"></div>
+            </div>
         </div>
     </main>
 

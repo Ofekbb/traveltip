@@ -8,7 +8,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onGoToLoc = onGoToLoc;
 window.onDeleteLoc = onDeleteLoc;
-
+window.onSearchLocation = onSearchLocation;
 
 function onInit() {
   mapService
@@ -40,7 +40,7 @@ function onGetLocs() {
         <td class="name">${loc.name}</td>
         <td><button onclick="onGoToLoc(${loc.lat},${loc.lng})">go</button></td>
         <td><button onclick="onDeleteLoc(${loc.lat},${loc.lng})">delete</button></td>
-    </tr>`
+    </tr>`;
     });
     document.querySelector('.locs-container').innerHTML = strHtmls.join('');
   });
@@ -64,11 +64,19 @@ function onPanTo() {
   mapService.panTo(35.6895, 139.6917);
 }
 
-function onGoToLoc(lat,lng){
-    mapService.panTo(lat,lng)
+function onGoToLoc(lat, lng) {
+  mapService.panTo(lat, lng);
 }
 
-function onDeleteLoc(lat,lng){
-    locService.deleteLoc(lat,lng);
-    onGetLocs();
+function onDeleteLoc(lat, lng) {
+  locService.deleteLoc(lat, lng);
+  onGetLocs();
 }
+
+function onSearchLocation(ev) {
+  ev.preventDefault();
+  console.log(ev.target[0].value);
+  mapService.getLocationByName(ev.target[0].value);
+}
+
+// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCGH-eko21Y5UNabaohnFmN6d9B5VGfmVk
