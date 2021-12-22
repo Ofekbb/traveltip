@@ -1,13 +1,19 @@
+import { locService } from './loc.service.js'
+
 export const mapService = {
     initMap,
     addMarker,
     panTo
 }
 
+
+
+
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
+
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -18,6 +24,25 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 })
             console.log('Map!', gMap);
         })
+        .then(() => {
+            gMap.addListener("click", (mapsMouseEvent) => {
+                // Create a new InfoWindow.
+                let infoWindow = new google.maps.InfoWindow({
+                    position: mapsMouseEvent.latLng,
+
+                });
+                const latlng = mapsMouseEvent.latLng.toJSON()
+                console.dir(mapsMouseEvent)
+                locService.setNewLoc(latlng.lat, latlng.lng)
+                    // return Promise.resolve(mapsMouseEvent.latLng.toJSON())
+                    // infoWindow.setContent(
+                    //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                    // );
+                    // infoWindow.open(gMap);
+
+            });
+        })
+
 }
 
 function addMarker(loc) {
