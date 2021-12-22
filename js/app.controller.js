@@ -33,13 +33,13 @@ function onGetLocs() {
         .then(locs => {
             console.log('Locations:', locs)
             const strHtmls = locs.map(loc=>{
-                return <tr>
+                return `<tr>
                     <button >Go</button>
                 <button>delete</button>
 
 
                 </tr>
-                
+                `
             })
             document.querySelector('.locs').innerText = JSON.stringify(locs)
         })
