@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: burlywood;
+}
+ 
+button{
+    background-color: cadetblue;
+    text-decoration: none;
+    border: 1px solid gray;
+    height: 2em;
+}
+
+
+header{
+    text-align: center;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    background-color: cornsilk;
+    padding: 20px ;
+}
+
+.main-container{
+    display: flex;
+    padding: 30px ;
+    justify-content: space-evenly;
+}
+.side{
+    background-color: rgb(182, 245, 245);
+    width: 40%;
+}
+
+.weather{
+    background-color: chartreuse;
+    height: 170px;
+}
+
+.my-locations{
+    background-color: cornflowerblue;
+    height: 170px;
+}
+
