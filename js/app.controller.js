@@ -14,6 +14,7 @@ window.onGoToLoc = onGoToLoc;
 window.onDeleteLoc = onDeleteLoc;
 window.onGetLink = onGetLink;
 
+window.onSearchLocation = onSearchLocation;
 
 function onInit() {
     mapService
@@ -92,3 +93,12 @@ function onGetLink() {
             return url
         })
 }
+
+
+function onSearchLocation(ev) {
+    ev.preventDefault();
+    console.log(ev.target[0].value);
+    mapService.getLocationByName(ev.target[0].value);
+}
+
+// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCGH-eko21Y5UNabaohnFmN6d9B5VGfmVk

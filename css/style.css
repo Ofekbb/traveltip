@@ -11,6 +11,7 @@ button{
     text-decoration: none;
     border: 1px solid gray;
     height: 2em;
+    border-radius: 5px;
 }
 
 
@@ -56,5 +57,9 @@ header{
 }
 .name{
     width: 100%;
+}
+
+.map-container{
+    width: 50%;
 }
 
