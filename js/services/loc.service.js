@@ -1,8 +1,8 @@
 import { weatherServices } from './weather.service.js'
 export const locService = {
     getLocs,
-    setNewLoc
-
+    setNewLoc,
+    deleteLoc
 }
 
 
@@ -40,5 +40,10 @@ function setNewLoc(lat, lng) {
 function getWeather(lat, lng) {
     console.log(weatherServices.askWeather(lat, lng))
     return weatherServices.askWeather(lat, lng)
-        .then((temp) => temp.main.temp)
+        .then((temp) => temp.main.temp);
+}
+
+function deleteLoc(lat, lng) {
+    const locIdx = locs.findIndex(loc => lat === loc.lat && lng === loc.lng);
+    locs.splice(locIdx, 1);
 }
