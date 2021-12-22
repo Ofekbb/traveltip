@@ -3,10 +3,11 @@ import { locService } from './loc.service.js'
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+
 }
 
-
+var gMarker
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
@@ -20,7 +21,6 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     center: { lat, lng },
                     zoom: 15
                 })
-            console.log('Map!', gMap);
         })
         .then(() => {
             gMap.addListener("click", (mapsMouseEvent) => {
@@ -30,8 +30,8 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
                 });
                 const latlng = mapsMouseEvent.latLng.toJSON()
-                console.dir(mapsMouseEvent)
                 locService.setNewLoc(latlng.lat, latlng.lng)
+                addMarker(latlng)
 
             });
         })
@@ -39,12 +39,13 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 }
 
 function addMarker(loc) {
-    var marker = new google.maps.Marker({
+    if (gMarker) gMarker.setMap(null); // Delete the last marker
+    gMarker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!'
     });
-    return marker;
+    return gMarker;
 }
 
 function panTo(lat, lng) {

@@ -1,4 +1,5 @@
 import { weatherServices } from './weather.service.js'
+import { controller } from '../app.controller.js';
 export const locService = {
     getLocs,
     setNewLoc,
@@ -33,12 +34,11 @@ function setNewLoc(lat, lng) {
                 updatedAt: time
             })
         }),
-
-        console.log(locs)
+        controller.onGetLocs()
+    controller.onGoToLoc(lat, lng)
 }
 
 function getWeather(lat, lng) {
-    console.log(weatherServices.askWeather(lat, lng))
     return weatherServices.askWeather(lat, lng)
         .then((temp) => temp.main.temp);
 }
