@@ -46,3 +46,15 @@ header{
     height: 170px;
 }
 
+.locs-container{
+    width: 90%;
+    text-align: center;
+}
+.my-locations h3{
+    text-align: center;
+    text-decoration: underline;
+}
+.name{
+    width: 100%;
+}
+
